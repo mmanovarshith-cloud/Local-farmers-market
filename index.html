@@ -1,0 +1,1062 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harvestly | Local Farmer's Market</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --green:#173f35;
+  --green2:#285b49;
+  --sage:#a8b995;
+  --cream:#f7f5ee;
+  --orange:#e89a65;
+  --ink:#26352d;
+  --muted:#829087;
+  --white:#fffefa;
+  --line:#e7e9e1;
+}
+
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  font-family:'DM Sans',sans-serif;
+  background:var(--white);
+  color:var(--ink);
+}
+button,input,select {font:inherit}
+button {cursor:pointer}
+a {text-decoration:none;color:inherit}
+
+.announcement {
+  background:var(--green);
+  color:white;
+  text-align:center;
+  padding:10px;
+  font-size:11px;
+  letter-spacing:1px;
+}
+.announcement span {color:var(--orange)}
+
+header {
+  height:82px;
+  padding:0 7%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:var(--white);
+  position:sticky;
+  top:0;
+  z-index:10;
+  border-bottom:1px solid var(--line);
+}
+.logo {
+  font-size:27px;
+  font-weight:800;
+  color:var(--green);
+  letter-spacing:-1.5px;
+}
+.logo span {color:var(--orange)}
+.logo small {
+  display:block;
+  font-size:8px;
+  letter-spacing:2px;
+  color:var(--muted);
+}
+nav {display:flex;gap:35px}
+nav a {
+  font-size:12px;
+  color:#68766d;
+  font-weight:600;
+}
+nav a:hover {color:var(--orange)}
+.header-actions {display:flex;gap:15px;align-items:center}
+.cart-btn {
+  border:1px solid var(--line);
+  background:white;
+  padding:10px 17px;
+  border-radius:25px;
+  color:var(--green);
+  font-size:12px;
+  font-weight:700;
+}
+.cart-btn b {
+  background:var(--green);
+  color:white;
+  border-radius:50%;
+  padding:4px 7px;
+  margin-left:6px;
+}
+.menu-btn {display:none}
+
+.hero {
+  background:var(--cream);
+  padding:75px 9%;
+  min-height:620px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:center;
+}
+.eyebrow {
+  color:#78877b;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+.eyebrow span {color:var(--orange);margin-right:8px}
+.hero h1 {
+  font:700 clamp(48px,5.5vw,75px)/1.08 'Playfair Display',serif;
+  color:var(--green);
+  margin:23px 0;
+  letter-spacing:-2px;
+}
+.hero h1 em {color:var(--sage)}
+.hero p {
+  max-width:420px;
+  color:#77837b;
+  font-size:14px;
+  line-height:1.9;
+}
+.hero-buttons {
+  display:flex;
+  align-items:center;
+  gap:25px;
+  margin-top:30px;
+}
+.btn {
+  display:inline-block;
+  border:0;
+  padding:15px 23px;
+  background:var(--green);
+  color:white;
+  font-size:11px;
+  font-weight:700;
+  border-radius:3px;
+  transition:.25s;
+}
+.btn:hover {background:var(--green2);transform:translateY(-2px)}
+.text-link {
+  color:var(--green);
+  font-size:11px;
+  font-weight:700;
+  border-bottom:1px solid var(--sage);
+  padding-bottom:6px;
+}
+.hero-image {
+  height:450px;
+  position:relative;
+}
+.hero-image img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:48% 48% 4px 4px;
+}
+.image-note {
+  position:absolute;
+  left:-35px;
+  bottom:30px;
+  background:white;
+  padding:18px 22px;
+  box-shadow:0 10px 35px #173f3520;
+  font-size:12px;
+  color:var(--green);
+}
+.image-note small {display:block;color:var(--muted);margin-top:5px}
+
+.trust {
+  padding:30px 10%;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  border-bottom:1px solid var(--line);
+}
+.trust div {
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+.trust strong {
+  font:600 26px 'Playfair Display';
+  color:var(--sage);
+}
+.trust span {font-size:11px;color:#68766d;line-height:1.6}
+
+.section {padding:90px 8%}
+.section-heading {margin-bottom:35px}
+.section-heading h2 {
+  font:700 49px 'Playfair Display';
+  color:var(--green);
+  margin:15px 0 8px;
+}
+.section-heading h2 em {color:var(--sage)}
+.section-heading p {font-size:12px;color:var(--muted)}
+
+.tools {
+  display:flex;
+  gap:15px;
+  align-items:center;
+  flex-wrap:wrap;
+  padding:18px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.search {
+  flex:1;
+  min-width:200px;
+  border:1px solid var(--line);
+  padding:12px;
+  outline:none;
+  font-size:12px;
+}
+.filters {display:flex;gap:6px;flex-wrap:wrap}
+.filter {
+  padding:10px 13px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#748077;
+  font-size:10px;
+  border-radius:3px;
+}
+.filter.active,.filter:hover {
+  background:#edf2e9;
+  color:var(--green);
+  border-color:#dfe8dc;
+}
+.sort {
+  padding:11px;
+  border:1px solid var(--line);
+  background:white;
+  font-size:10px;
+  color:var(--green);
+}
+
+.result-line {
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:10px;
+  padding:18px 0;
+}
+.products {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:30px 18px;
+}
+.product {min-width:0}
+.product-image {
+  height:220px;
+  position:relative;
+  overflow:hidden;
+  background:#edf0e7;
+}
+.product-image img {
+  height:100%;
+  width:100%;
+  object-fit:cover;
+  transition:.4s;
+}
+.product:hover img {transform:scale(1.06)}
+.tag {
+  position:absolute;
+  top:12px;
+  left:12px;
+  padding:7px 9px;
+  background:var(--cream);
+  color:var(--green);
+  font-size:8px;
+  font-weight:800;
+  text-transform:uppercase;
+}
+.add {
+  position:absolute;
+  right:12px;
+  bottom:12px;
+  height:38px;
+  width:38px;
+  border:0;
+  border-radius:50%;
+  background:white;
+  color:var(--green);
+  font-size:23px;
+  box-shadow:0 5px 15px #0002;
+}
+.add:hover {background:var(--green);color:white}
+.product-info {
+  display:flex;
+  justify-content:space-between;
+  margin-top:14px;
+  font-size:9px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.price {color:var(--green);font-size:12px;font-weight:800}
+.product h3 {
+  font:600 19px 'Playfair Display';
+  color:var(--green);
+  margin:8px 0 5px;
+}
+.farm {font-size:10px;color:#89948b}
+.unit {font-size:9px;color:#a0a99f;margin-top:8px}
+
+.no-results {
+  text-align:center;
+  padding:50px;
+  color:var(--muted);
+}
+.no-results h3 {
+  font:600 24px 'Playfair Display';
+  color:var(--green);
+  margin:10px;
+}
+
+.story {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  background:var(--green);
+  color:white;
+}
+.story-image {min-height:440px}
+.story-image img {width:100%;height:100%;object-fit:cover}
+.story-content {padding:65px 12%}
+.story-content h2 {
+  font:700 48px/1.15 'Playfair Display';
+  margin:22px 0;
+}
+.story-content h2 em {color:#b8c8a8}
+.story-content p {
+  font-size:12px;
+  line-height:1.9;
+  color:#c5d0c5;
+  margin-bottom:25px;
+}
+.cream-btn {
+  background:var(--cream);
+  color:var(--green);
+}
+
+.steps {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+  margin-top:45px;
+}
+.step {
+  padding:25px 15px;
+  border-top:1px solid var(--line);
+}
+.step-number {color:var(--sage);font:italic 18px 'Playfair Display'}
+.step-icon {font-size:28px;margin:20px 0;color:var(--green)}
+.step h3 {
+  font:600 21px 'Playfair Display';
+  color:var(--green);
+  margin-bottom:10px;
+}
+.step p {font-size:11px;line-height:1.8;color:var(--muted)}
+
+.join {
+  background:var(--sage);
+  padding:55px 10%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px;
+}
+.join h2 {
+  font:700 42px 'Playfair Display';
+  color:var(--green);
+  margin:15px 0;
+}
+.join p {font-size:12px;color:#f9f9f2}
+
+footer {
+  background:#142f29;
+  color:white;
+  padding:45px 9% 20px;
+}
+.footer-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.footer-logo {font-size:25px;font-weight:800}
+.footer-logo span {color:var(--orange)}
+.footer-top p {font:italic 15px 'Playfair Display';color:#c6d0c6}
+.footer-bottom {
+  border-top:1px solid #ffffff25;
+  margin-top:35px;
+  padding-top:18px;
+  display:flex;
+  justify-content:space-between;
+  color:#aab9ac;
+  font-size:10px;
+}
+
+.drawer-bg {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:20;
+}
+.drawer-bg.show {display:block}
+.drawer {
+  position:fixed;
+  z-index:21;
+  right:-450px;
+  top:0;
+  width:min(420px,100%);
+  height:100%;
+  background:var(--white);
+  padding:28px;
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+}
+.drawer.open {right:0}
+.drawer-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line);
+  padding-bottom:20px;
+}
+.drawer-head h2 {
+  font:600 27px 'Playfair Display';
+  color:var(--green);
+}
+.close {
+  border:0;
+  background:#edf2e9;
+  color:var(--green);
+  width:35px;
+  height:35px;
+  border-radius:50%;
+  font-size:22px;
+}
+.cart-items {overflow:auto;flex:1}
+.cart-item {
+  display:grid;
+  grid-template-columns:70px 1fr auto;
+  gap:12px;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid var(--line);
+}
+.cart-item img {width:70px;height:70px;object-fit:cover}
+.cart-item h4 {font:600 15px 'Playfair Display';color:var(--green)}
+.cart-item small {font-size:9px;color:var(--muted)}
+.qty {display:flex;align-items:center;gap:9px;margin-top:8px}
+.qty button {
+  width:22px;height:22px;
+  border:1px solid var(--line);
+  background:white;
+  color:var(--green);
+}
+.qty span {font-size:10px}
+.cart-total {
+  border-top:1px solid var(--line);
+  padding-top:20px;
+}
+.total-line {display:flex;justify-content:space-between;color:var(--green)}
+.total-line strong {font-size:18px}
+.cart-total p {font-size:9px;color:var(--muted);margin:12px 0}
+.full {width:100%;text-align:center}
+.empty {margin:auto;text-align:center;color:var(--muted)}
+.empty h3 {font:600 22px 'Playfair Display';color:var(--green);margin:10px}
+.empty p {font-size:11px;margin-bottom:20px}
+
+.modal-bg {
+  display:none;
+  position:fixed;
+  z-index:30;
+  inset:0;
+  background:#0008;
+  place-items:center;
+  padding:15px;
+}
+.modal-bg.show {display:grid}
+.modal {
+  background:white;
+  width:min(470px,100%);
+  padding:35px;
+  position:relative;
+  max-height:90vh;
+  overflow:auto;
+}
+.modal h2 {
+  font:600 29px 'Playfair Display';
+  color:var(--green);
+  margin:10px 0;
+}
+.modal p {font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:15px}
+.modal label {
+  display:block;
+  font-size:10px;
+  font-weight:700;
+  color:var(--green);
+  margin:14px 0;
+}
+.modal input,.modal textarea {
+  display:block;
+  width:100%;
+  border:1px solid var(--line);
+  padding:12px;
+  margin-top:7px;
+  outline:none;
+  font-size:11px;
+}
+.modal input:focus,.modal textarea:focus {border-color:var(--sage)}
+.toast {
+  position:fixed;
+  z-index:50;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,20px);
+  background:var(--green);
+  color:white;
+  padding:13px 20px;
+  font-size:11px;
+  opacity:0;
+  transition:.25s;
+  pointer-events:none;
+}
+.toast.show {opacity:1;transform:translate(-50%,0)}
+.hidden {display:none!important}
+
+@media(max-width:950px) {
+  .products {grid-template-columns:repeat(3,1fr)}
+  header {padding:0 4%}
+  .hero {padding:60px 6%;gap:25px}
+}
+@media(max-width:650px) {
+  header {height:70px}
+  nav {display:none}
+  .menu-btn {display:block;background:none;border:0;color:var(--green);font-size:22px}
+  .hero {grid-template-columns:1fr;padding:45px 7%}
+  .hero h1 {font-size:53px}
+  .hero-image {height:340px;margin-top:15px}
+  .image-note {left:0}
+  .trust {grid-template-columns:1fr 1fr;padding:25px 7%}
+  .section {padding:65px 6%}
+  .section-heading h2 {font-size:40px}
+  .tools {display:block}
+  .search {width:100%;margin-bottom:12px}
+  .filters {margin-bottom:12px}
+  .sort {width:100%}
+  .products {grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 12px}
+  .product-image {height:175px}
+  .product h3 {font-size:16px}
+  .story {grid-template-columns:1fr}
+  .story-image {height:250px;min-height:250px}
+  .story-content {padding:40px 8%}
+  .story-content h2 {font-size:43px}
+  .steps {grid-template-columns:1fr;gap:10px}
+  .join {display:block;padding:40px 8%}
+  .join h2 {font-size:37px}
+  .join .btn {margin-top:20px}
+  .footer-top {display:block}
+  .footer-top p {margin-top:20px}
+  .footer-bottom {gap:12px;flex-wrap:wrap}
+}
+@media(max-width:380px) {
+  .products {grid-template-columns:1fr}
+  .product-image {height:230px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+  ✦ FRESH, SEASONAL PRODUCE — GROWN CLOSER TO HOME ✦
+</div>
+
+<header>
+  <a href="#" class="logo">harvestly<span>.</span>
+    <small>THE LOCAL FARM MARKET</small>
+  </a>
+
+  <nav id="navigation">
+    <a href="#">Home</a>
+    <a href="#market">Discover</a>
+    <a href="#story">Our story</a>
+    <a href="#how">How it works</a>
+  </nav>
+
+  <div class="header-actions">
+    <button class="cart-btn" onclick="openCart()">
+      My Bag <b id="cartCount">0</b>
+    </button>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow"><span>✦</span> GOOD FOOD. GOOD PEOPLE. GOOD PLANET.</div>
+
+    <h1>Closer to the<br><em>source.</em> Better<br>by nature.</h1>
+
+    <p>
+      Meet the growers behind your groceries.
+      Discover fresh, seasonal produce from independent
+      farms in your community. Good food begins locally.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#market" class="btn">Explore the market ↗</a>
+      <a href="#story" class="text-link">Our story →</a>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=85" alt="Fresh vegetables at a farmers market">
+    <div class="image-note">
+      ✳ Picked with care
+      <small>Freshness you can taste.</small>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div><strong>01</strong><span>Know your<br>farmer</span></div>
+  <div><strong>02</strong><span>Seasonal by<br>nature</span></div>
+  <div><strong>03</strong><span>Closer farms,<br>fresher food</span></div>
+</section>
+
+<section class="section" id="market">
+
+  <div class="section-heading">
+    <div class="eyebrow"><span>✦</span> THE GOOD STUFF</div>
+    <h2>Today's <em>harvest.</em></h2>
+    <p>Thoughtfully grown. Beautifully fresh. Ready for your table.</p>
+  </div>
+
+  <div class="tools">
+    <input
+      type="search"
+      class="search"
+      id="search"
+      placeholder="⌕  Search vegetables, fruits, farms..."
+      oninput="renderProducts()"
+    >
+
+    <div class="filters">
+      <button class="filter active" onclick="setCategory('All',this)">All</button>
+      <button class="filter" onclick="setCategory('Vegetables',this)">Vegetables</button>
+      <button class="filter" onclick="setCategory('Fruits',this)">Fruits</button>
+      <button class="filter" onclick="setCategory('Herbs',this)">Herbs</button>
+      <button class="filter" onclick="setCategory('Pantry',this)">Pantry</button>
+    </div>
+
+    <select class="sort" id="sort" onchange="renderProducts()">
+      <option value="featured">Featured products</option>
+      <option value="low">Price: Low to high</option>
+      <option value="high">Price: High to low</option>
+      <option value="name">Name: A to Z</option>
+    </select>
+  </div>
+
+  <div class="result-line">
+    <span id="resultCount">Showing all products</span>
+    <span>● Fresh seasonal selection</span>
+  </div>
+
+  <div class="products" id="products"></div>
+
+  <div class="no-results hidden" id="noResults">
+    <h3>No products found</h3>
+    <p>Try a different search or category.</p>
+  </div>
+
+</section>
+
+<section class="story" id="story">
+  <div class="story-image">
+    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1100&q=85" alt="Beautiful green farm fields">
+  </div>
+
+  <div class="story-content">
+    <div class="eyebrow" style="color:#c4d1c4"><span>✦</span> ROOTED IN COMMUNITY</div>
+
+    <h2>Behind every<br>good harvest is<br><em>a good story.</em></h2>
+
+    <p>
+      We believe the best food comes from people who
+      care about the land and the communities they feed.
+      Discover the growers, their practices and the
+      passion behind every product.
+    </p>
+
+    <a href="#how" class="btn cream-btn">Our promise ↗</a>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="section-heading">
+    <div class="eyebrow"><span>✦</span> SIMPLE AS THAT</div>
+    <h2>Good food, <em>made easy.</em></h2>
+    <p>A few thoughtful steps from local soil to your kitchen.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <div class="step-icon">⌕</div>
+      <h3>Find your favorites</h3>
+      <p>Explore seasonal produce and discover the local farms behind it.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">02</div>
+      <div class="step-icon">♡</div>
+      <h3>Fill your basket</h3>
+      <p>Add fresh finds to your bag and review your selection.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">03</div>
+      <div class="step-icon">♧</div>
+      <h3>Enjoy the goodness</h3>
+      <p>Place your order and support growers in your community.</p>
+    </div>
+  </div>
+</section>
+
+<section class="join">
+  <div>
+    <div class="eyebrow"><span>✦</span> GROW WITH US</div>
+    <h2>Are you a local grower?</h2>
+    <p>Bring your harvest to a community that values good food.</p>
+  </div>
+  <button class="btn cream-btn" onclick="openFarmerForm()">Join as a farmer ↗</button>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div class="footer-logo">harvestly<span>.</span></div>
+    <p>Good food grows good communities.</p>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Harvestly Marketplace</span>
+    <span>Made for local communities ✦</span>
+  </div>
+</footer>
+
+<!-- SHOPPING CART -->
+<div class="drawer-bg" id="drawerBg" onclick="closeCart()"></div>
+
+<aside class="drawer" id="drawer">
+  <div class="drawer-head">
+    <h2>Your bag <small id="drawerCount">(0)</small></h2>
+    <button class="close" onclick="closeCart()">×</button>
+  </div>
+
+  <div class="cart-items" id="cartItems"></div>
+
+  <div class="empty" id="emptyCart">
+    <h3>Your basket is empty.</h3>
+    <p>Discover something fresh today.</p>
+    <button class="btn" onclick="closeCart()">Explore produce</button>
+  </div>
+
+  <div class="cart-total hidden" id="cartTotal">
+    <div class="total-line">
+      <span>Subtotal</span>
+      <strong id="subtotal">₹0</strong>
+    </div>
+    <p>Demo checkout. No actual payment is collected.</p>
+    <button class="btn full" onclick="checkout()">Continue to checkout →</button>
+  </div>
+</aside>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal" id="modal">
+    <button class="close" style="float:right" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const products = [
+ {id:1,name:"Heirloom Tomatoes",category:"Vegetables",price:68,unit:"500 g",farm:"Meadow & Moss Farm",tag:"Just picked",image:"https://images.unsplash.com/photo-1546094096-0df4bcaaa337?auto=format&fit=crop&w=700&q=85"},
+ {id:2,name:"Sweet Strawberries",category:"Fruits",price:145,unit:"250 g",farm:"Berry Good Acres",tag:"Seasonal",image:"https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=700&q=85"},
+ {id:3,name:"Rainbow Carrots",category:"Vegetables",price:55,unit:"500 g",farm:"The Rooted Patch",tag:"Bestseller",image:"https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=700&q=85"},
+ {id:4,name:"Fresh Basil",category:"Herbs",price:35,unit:"1 bunch",farm:"Green Thumb Garden",tag:"Garden fresh",image:"https://images.unsplash.com/photo-1618375569909-3c8616cf7733?auto=format&fit=crop&w=700&q=85"},
+ {id:5,name:"Farmhouse Eggs",category:"Pantry",price:96,unit:"6 pieces",farm:"Sunny Side Farm",tag:"Farm favorite",image:"https://images.unsplash.com/photo-1506976785307-8732e854ad03?auto=format&fit=crop&w=700&q=85"},
+ {id:6,name:"Green Bell Peppers",category:"Vegetables",price:48,unit:"500 g",farm:"Meadow & Moss Farm",tag:"Fresh pick",image:"https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?auto=format&fit=crop&w=700&q=85"},
+ {id:7,name:"Golden Mangoes",category:"Fruits",price:120,unit:"1 kg",farm:"Sunrise Orchard",tag:"In season",image:"https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=700&q=85"},
+ {id:8,name:"Raw Forest Honey",category:"Pantry",price:210,unit:"250 g",farm:"Wildflower Collective",tag:"Small batch",image:"https://images.unsplash.com/photo-1587049352851-8d4e89133924?auto=format&fit=crop&w=700&q=85"}
+];
+
+let category="All";
+let cart=JSON.parse(localStorage.getItem("harvestlyCart")||"{}");
+
+function money(value) {
+ return "₹"+value.toLocaleString("en-IN");
+}
+
+function renderProducts() {
+ const query=document.getElementById("search").value.toLowerCase();
+ const sort=document.getElementById("sort").value;
+
+ let list=products.filter(p=>
+  (category==="All"||p.category===category) &&
+  (p.name+" "+p.category+" "+p.farm).toLowerCase().includes(query)
+ );
+
+ if(sort==="low") list.sort((a,b)=>a.price-b.price);
+ if(sort==="high") list.sort((a,b)=>b.price-a.price);
+ if(sort==="name") list.sort((a,b)=>a.name.localeCompare(b.name));
+
+ document.getElementById("products").innerHTML=list.map(p=>`
+  <article class="product">
+   <div class="product-image">
+    <img src="${p.image}" alt="${p.name}" loading="lazy">
+    <span class="tag">${p.tag}</span>
+    <button class="add" onclick="addToCart(${p.id})" aria-label="Add ${p.name}">+</button>
+   </div>
+   <div class="product-info">
+    <span>${p.category}</span>
+    <span class="price">${money(p.price)}</span>
+   </div>
+   <h3>${p.name}</h3>
+   <div class="farm">↗ ${p.farm}</div>
+   <div class="unit">Price per ${p.unit}</div>
+  </article>
+ `).join("");
+
+ document.getElementById("resultCount").textContent=`Showing ${list.length} products`;
+ document.getElementById("noResults").classList.toggle("hidden",list.length!==0);
+}
+
+function setCategory(value,button) {
+ category=value;
+ document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));
+ button.classList.add("active");
+ renderProducts();
+}
+
+function saveCart() {
+ localStorage.setItem("harvestlyCart",JSON.stringify(cart));
+}
+
+function addToCart(id) {
+ cart[id]=(cart[id]||0)+1;
+ saveCart();
+ updateCart();
+ showToast(products.find(p=>p.id===id).name+" added to your bag");
+}
+
+function updateCart() {
+ const entries=Object.entries(cart).filter(([,q])=>q>0);
+ const count=entries.reduce((n,[,q])=>n+q,0);
+ const total=entries.reduce((n,[id,q])=>n+products.find(p=>p.id==id).price*q,0);
+
+ document.getElementById("cartCount").textContent=count;
+ document.getElementById("drawerCount").textContent="("+count+")";
+ document.getElementById("subtotal").textContent=money(total);
+
+ document.getElementById("emptyCart").classList.toggle("hidden",count>0);
+ document.getElementById("cartTotal").classList.toggle("hidden",count===0);
+
+ document.getElementById("cartItems").innerHTML=entries.map(([id,q])=>{
+  const p=products.find(x=>x.id==id);
+  return `
+   <div class="cart-item">
+    <img src="${p.image}" alt="${p.name}">
+    <div>
+     <h4>${p.name}</h4>
+     <small>${money(p.price)} / ${p.unit}</small>
+     <div class="qty">
+      <button onclick="changeQty(${id},-1)">−</button>
+      <span>${q}</span>
+      <button onclick="changeQty(${id},1)">+</button>
+     </div>
+    </div>
+    <strong>${money(p.price*q)}</strong>
+   </div>`;
+ }).join("");
+}
+
+function changeQty(id,change) {
+ cart[id]=(cart[id]||0)+change;
+ if(cart[id]<=0) delete cart[id];
+ saveCart();
+ updateCart();
+}
+
+function openCart() {
+ document.getElementById("drawer").classList.add("open");
+ document.getElementById("drawerBg").classList.add("show");
+}
+
+function closeCart() {
+ document.getElementById("drawer").classList.remove("open");
+ document.getElementById("drawerBg").classList.remove("show");
+}
+
+function openModal(content) {
+ document.getElementById("modalContent").innerHTML=content;
+ document.getElementById("modalBg").classList.add("show");
+}
+
+function closeModal() {
+ document.getElementById("modalBg").classList.remove("show");
+}
+
+function checkout() {
+ closeCart();
+ const entries=Object.entries(cart);
+ const total=entries.reduce((n,[id,q])=>n+products.find(p=>p.id==id).price*q,0);
+
+ openModal(`
+  <div class="eyebrow">✦ ALMOST THERE</div>
+  <h2>Complete your order.</h2>
+  <p>Fill in your details to place a demo order.</p>
+  <form id="checkoutForm">
+   <label>Your name
+    <input name="name" required placeholder="Full name">
+   </label>
+   <label>Email address
+    <input name="email" type="email" required placeholder="you@example.com">
+   </label>
+   <label>Phone number
+    <input name="phone" type="tel" pattern="[0-9+ -]{8,15}" required placeholder="Phone number">
+   </label>
+   <label>Delivery address
+    <textarea name="address" required placeholder="Enter your address"></textarea>
+   </label>
+   <div class="order-summary">Order total: <strong>${money(total)}</strong></div>
+   <button class="btn full" type="submit">Place demo order →</button>
+  </form>
+  <p>Academic project demonstration. No real payment is collected.</p>
+ `);
+
+ document.getElementById("checkoutForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const data=Object.fromEntries(new FormData(this));
+  const orders=JSON.parse(localStorage.getItem("harvestlyOrders")||"[]");
+  orders.unshift({
+   ...data,
+   items:entries.map(([id,q])=>({
+    product:products.find(p=>p.id==id).name,
+    quantity:q
+   })),
+   total,
+   status:"Order received",
+   date:new Date().toISOString()
+  });
+  localStorage.setItem("harvestlyOrders",JSON.stringify(orders));
+  cart={};
+  saveCart();
+  updateCart();
+
+  openModal(`
+   <h2>✓ Order received!</h2>
+   <p>Thank you, ${escapeHTML(data.name)}. Your demo order has been saved in this browser.</p>
+   <button class="btn full" onclick="closeModal()">Back to marketplace</button>
+  `);
+ });
+}
+
+function openFarmerForm() {
+ openModal(`
+  <div class="eyebrow">✦ FOR LOCAL GROWERS</div>
+  <h2>Grow with Harvestly.</h2>
+  <p>Tell us about your farm and the produce you grow.</p>
+  <form id="farmerForm">
+   <label>Farm name
+    <input name="farm" required placeholder="Your farm name">
+   </label>
+   <label>Your name
+    <input name="name" required placeholder="Full name">
+   </label>
+   <label>Email
+    <input name="email" type="email" required placeholder="Email address">
+   </label>
+   <label>Phone
+    <input name="phone" required placeholder="Phone number">
+   </label>
+   <label>Products you grow
+    <input name="produce" required placeholder="Vegetables, fruits, grains...">
+   </label>
+   <button class="btn full">Submit interest →</button>
+  </form>
+ `);
+
+ document.getElementById("farmerForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const details=Object.fromEntries(new FormData(this));
+  const farmers=JSON.parse(localStorage.getItem("harvestlyFarmers")||"[]");
+  farmers.unshift({...details,date:new Date().toISOString()});
+  localStorage.setItem("harvestlyFarmers",JSON.stringify(farmers));
+  openModal(`
+   <h2>Thank you for joining!</h2>
+   <p>Your farmer registration interest has been saved in this browser.</p>
+   <button class="btn full" onclick="closeModal()">Done</button>
+  `);
+ });
+}
+
+function escapeHTML(value) {
+ return String(value).replace(/[&<>"']/g,c=>({
+  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+ }[c]));
+}
+
+let toastTimer;
+function showToast(message) {
+ const toast=document.getElementById("toast");
+ toast.textContent=message;
+ toast.classList.add("show");
+ clearTimeout(toastTimer);
+ toastTimer=setTimeout(()=>toast.classList.remove("show"),2200);
+}
+
+function toggleMenu() {
+ const nav=document.getElementById("navigation");
+ nav.style.display=nav.style.display==="flex"?"none":"flex";
+ nav.style.flexDirection="column";
+ nav.style.position="absolute";
+ nav.style.top="70px";
+ nav.style.left="0";
+ nav.style.right="0";
+ nav.style.padding="20px";
+ nav.style.background="white";
+ nav.style.zIndex="20";
+}
+
+document.getElementById("modalBg").addEventListener("click",e=>{
+ if(e.target.id==="modalBg") closeModal();
+});
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape") {
+  closeModal();
+  closeCart();
+ }
+});
+
+renderProducts();
+updateCart();
+</script>
+
+</body>
+</html>
